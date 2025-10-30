@@ -62,16 +62,16 @@ python main.py
 ├── password_dialog.ui           # UI диалога пароля (Qt Designer)
 ├── generator_dialog.ui          # UI генератора паролей (Qt Designer)
 ├── icons/                       # ПАПКА С ИКОНКАМИ КАТЕГОРИЙ
-│   ├── social.png               # Иконка для соцсетей
-│   ├── email.png                # Иконка для почты
-│   ├── bank.png                 # Иконка для банков
-│   ├── work.png                 # Иконка для работы
-│   ├── games.png                # Иконка для игр
-│   ├── education.png            # Иконка для образования
-│   ├── health.png               # Иконка для здоровья
-│   ├── shopping.png             # Иконка для покупок
-│   ├── travel.png               # Иконка для путешествий
-│   └── food.png                 # Иконка для еды
+│   ├── social.ico               # Иконка для соцсетей
+│   ├── email.ico                # Иконка для почты
+│   ├── bank.ico                 # Иконка для банков
+│   ├── work.ico                 # Иконка для работы
+│   ├── games.ico                # Иконка для игр
+│   ├── education.ico            # Иконка для образования
+│   ├── health.ico               # Иконка для здоровья
+│   ├── shopping.ico             # Иконка для покупок
+│   ├── travel.ico               # Иконка для путешествий
+│   └── food.ico                 # Иконка для еды
 ├── database/                    # ПАПКА БАЗЫ ДАННЫХ
 │   └── database.sqlite          # Файл SQLite базы данных
 └── requirements.txt             # Зависимости проекта (опционально)
