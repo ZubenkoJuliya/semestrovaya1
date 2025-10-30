@@ -1,10 +1,11 @@
 import sys
 import os
 from PyQt6.QtWidgets import QApplication, QMessageBox, QInputDialog, QLineEdit
+from main_window import MainWindow
 
 
 def ask_master_password_before_app():
-    """Запрос мастер-пароля до создания главного окна"""
+    # Запрос мастер-пароля до создания главного окна
     app = QApplication([])
 
     password, ok = QInputDialog.getText(
@@ -26,30 +27,19 @@ def ask_master_password_before_app():
 
 
 def main():
-    # Создаем необходимые папки
-    os.makedirs('database', exist_ok=True)
-    os.makedirs('icons', exist_ok=True)
+    # Добавляем путь к иконкам и UI файлам для сборки
+    if hasattr(sys, '_MEIPASS'):
+        # Если запущено из собранного EXE
+        os.chdir(sys._MEIPASS)
 
-
-    # Запрашиваем мастер-пароль ДО создания главного окна
-    master_password = ask_master_password_before_app()
-
-    # Создаем QApplication (если еще не создан)
-    app = QApplication.instance() or QApplication([])
-    app.setApplicationName("Password Vault")
-    app.setApplicationVersion("1.0")
-
-    # Устанавливаем стиль приложения
+    app = QApplication(sys.argv)
     app.setStyle('Fusion')
 
-    # Импортируем и создаем главное окно
-    from main_window import MainWindow
-    window = MainWindow(master_password)  # Передаем пароль в конструктор
+    window = MainWindow()
     window.show()
 
-    # Запускаем приложение
     sys.exit(app.exec())
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

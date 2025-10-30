@@ -25,22 +25,22 @@ class MainWindow(QMainWindow):
         self.ask_master_password()
 
     def get_icon_for_category(self, icon_name):
-        #Получить картинку для категории по имени иконки
+        # Получить картинку для категории по имени иконки
         icon_files = {
-            'social': 'social.png',
-            'email': 'email.png',
-            'bank': 'bank.png',
-            'work': 'work.png',
-            'games': 'games.png',
-            'education': 'education.png',
-            'health': 'health.png',
-            'shopping': 'shopping.png',
-            'travel': 'travel.png',
-            'food': 'food.png'
+            'social': 'social.ico',
+            'email': 'email.ico',
+            'bank': 'bank.ico',
+            'work': 'work.ico',
+            'games': 'games.ico',
+            'education': 'education.ico',
+            'health': 'health.ico',
+            'shopping': 'shopping.ico',
+            'travel': 'travel.ico',
+            'food': 'food.ico'
         }
 
         # Получаем имя файла для категории
-        filename = icon_files.get(icon_name, 'default.png')
+        filename = icon_files.get(icon_name, 'default.ico')
         icon_path = f'icons/{filename}'
 
         # Если файл существует - используем его
@@ -52,7 +52,7 @@ class MainWindow(QMainWindow):
             return QIcon()  # Пустая иконка
 
     def setup_ui(self):
-        #Настройка интерфейса
+        # Настройка интерфейса
         # Подключаем сигналы
         self.search_input.returnPressed.connect(self.search_passwords)
         self.category_filter.currentIndexChanged.connect(self.filter_by_category)
@@ -81,7 +81,7 @@ class MainWindow(QMainWindow):
         print("Интерфейс настроен")
 
     def setup_shortcuts(self):
-        #Настройка горячих клавиш
+        # Настройка горячих клавиш
         # Ctrl+N - новая запись
         self.add_action = QAction("Добавить", self)
         self.add_action.setShortcut(QKeySequence.StandardKey.New)
@@ -107,7 +107,7 @@ class MainWindow(QMainWindow):
         self.addAction(self.search_action)
 
     def ask_master_password(self):
-        #Запрос мастер-пароля
+        # Запрос мастер-пароля
         from security import SecurityManager
 
         if self.master_password:
@@ -129,7 +129,7 @@ class MainWindow(QMainWindow):
         self.refresh_passwords()
 
     def load_categories(self):
-        #Загрузка категорий в комбобокс с картинками
+        # Загрузка категорий в комбобокс с картинками
         self.category_filter.clear()
 
         # Добавляем "Все категории" без иконки
@@ -144,7 +144,7 @@ class MainWindow(QMainWindow):
         print(f"Загружено категорий в фильтр: {self.category_filter.count()}")
 
     def refresh_passwords(self):
-        #Обновление списка паролей
+        # Обновление списка паролей
         try:
             self.all_passwords = self.db.get_all_passwords()
             self.apply_filters()
@@ -154,7 +154,7 @@ class MainWindow(QMainWindow):
             QMessageBox.critical(self, "Ошибка", f"Не удалось загрузить пароли: {str(e)}")
 
     def apply_filters(self):
-        #Применение всех активных фильтров
+        # Применение всех активных фильтров
         from PyQt6.QtGui import QStandardItemModel, QStandardItem
 
         filtered_passwords = self.all_passwords.copy()
@@ -206,25 +206,25 @@ class MainWindow(QMainWindow):
         print(f"Отображено паролей в таблице: {len(filtered_passwords)}")
 
     def filter_by_category(self):
-        #Фильтрация по выбранной категории
+        # Фильтрация по выбранной категории
         print("Фильтрация по категории...")
         self.apply_filters()
 
     def search_passwords(self):
-        #Поиск паролей
+        # Поиск паролей
         search_term = self.search_input.text().strip()
         print(f"Выполнение поиска: '{search_term}'")
         self.apply_filters()
 
     def clear_filters(self):
-        #Сброс всех фильтров
+        # Сброс всех фильтров
         print("Сброс фильтров")
         self.search_input.clear()
         self.category_filter.setCurrentIndex(0)
         self.apply_filters()
 
     def add_password(self):
-        #Добавление нового пароля
+        # Добавление нового пароля
         print("Нажата кнопка 'Добавить пароль'")
         try:
             from password_dialog import PasswordDialog
@@ -239,7 +239,7 @@ class MainWindow(QMainWindow):
             QMessageBox.critical(self, "Ошибка", f"Не удалось открыть диалог добавления: {str(e)}")
 
     def edit_password(self):
-        #Редактирование выбранного пароля
+        # Редактирование выбранного пароля
         print("Нажата кнопка 'Редактировать'")
         try:
             from password_dialog import PasswordDialog
@@ -265,7 +265,7 @@ class MainWindow(QMainWindow):
             QMessageBox.critical(self, "Ошибка", f"Не удалось открыть диалог редактирования: {str(e)}")
 
     def delete_password(self):
-        #Удаление выбранного пароля
+        # Удаление выбранного пароля
         print("Нажата кнопка 'Удалить'")
         try:
             selected_indexes = self.passwords_table.selectionModel().selectedRows()
@@ -301,7 +301,7 @@ class MainWindow(QMainWindow):
             QMessageBox.critical(self, "Ошибка", f"Не удалось удалить пароль: {str(e)}")
 
     def open_generator(self):
-        #Открытие генератора паролей
+        # Открытие генератора паролей
         print("Нажата кнопка 'Генератор паролей'")
         try:
             from generator_dialog import GeneratorDialog
@@ -312,6 +312,6 @@ class MainWindow(QMainWindow):
             QMessageBox.critical(self, "Ошибка", f"Не удалось открыть генератор: {str(e)}")
 
     def focus_search(self):
-        #Фокус на поле поиска
+        # Фокус на поле поиска
         self.search_input.setFocus()
         self.search_input.selectAll()

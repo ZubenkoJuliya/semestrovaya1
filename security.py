@@ -12,7 +12,7 @@ class SecurityManager:
         self.fernet = self._create_fernet_key(master_password)
 
     def _create_fernet_key(self, password):
-        #Создание ключа шифрования из мастер-пароля с фиксированной солью
+        # Создание ключа шифрования из мастер-пароля с фиксированной солью
         password_bytes = password.encode()
 
         # Фиксированная соль для всего приложения
@@ -28,7 +28,7 @@ class SecurityManager:
         return Fernet(key)
 
     def encrypt_password(self, password):
-        #Шифрование пароля
+        # Шифрование пароля
         try:
             encrypted = self.fernet.encrypt(password.encode())
             return encrypted.decode()
@@ -37,7 +37,7 @@ class SecurityManager:
             return ""
 
     def decrypt_password(self, encrypted_password):
-        #Дешифрование пароля
+        # Дешифрование пароля
         try:
             decrypted = self.fernet.decrypt(encrypted_password.encode())
             return decrypted.decode()
@@ -46,7 +46,7 @@ class SecurityManager:
             return ""
 
     def check_password_strength(self, password):
-        #Проверка надежности пароля
+        # Проверка надежности пароля
         score = 0
         if len(password) >= 8:
             score += 1
@@ -63,7 +63,7 @@ class SecurityManager:
 
     def generate_password(self, length=12, use_uppercase=True, use_lowercase=True,
                           use_digits=True, use_symbols=True):
-        #Генерация случайного пароля
+        # Генерация случайного пароля
         characters = ""
         if use_lowercase:
             characters += string.ascii_lowercase
@@ -84,12 +84,12 @@ class SecurityManager:
 class PasswordGenerator:
     @staticmethod
     def generate(length=12, uppercase=True, lowercase=True, digits=True, symbols=True):
-        #Статический метод для генерации паролей
+        # Статический метод для генерации паролей
         security = SecurityManager("temp")
         return security.generate_password(length, uppercase, lowercase, digits, symbols)
 
     @staticmethod
     def check_strength(password):
-        #Статический метод для проверки надежности
+        # Статический метод для проверки надежности
         security = SecurityManager("temp")
         return security.check_password_strength(password)

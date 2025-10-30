@@ -36,7 +36,7 @@ Password Manager - это современное приложение для б�
 
 ### Шаг 1: Клонирование репозитория
 ```bash
-git clone https://github.com/yourusername/password-manager.git
+git clone https://github.com/ZubenkoJuliya/semestrovaya1
 cd password-manager
 ```
 ### Шаг 2: Установка зависимостей

@@ -9,7 +9,7 @@ class SQLiteDatabase:
         self.init_database()
 
     def init_database(self):
-        #Инициализация базы данных
+        # Инициализация базы данных
         # Создаем папку если нет
         os.makedirs(os.path.dirname(self.db_path), exist_ok=True)
 
@@ -18,13 +18,13 @@ class SQLiteDatabase:
             print("База данных не найдена. Запустите create_database.py для создания.")
 
     def get_connection(self):
-        #Получение соединения с базой данных
+        # Получение соединения с базой данных
         conn = sqlite3.connect(self.db_path)
         conn.row_factory = sqlite3.Row  # Чтобы получать строки как словари
         return conn
 
     def get_categories(self):
-        #Получить все категории из базы данных
+        # Получить все категории из базы данных
         try:
             conn = self.get_connection()
             cursor = conn.cursor()
@@ -41,7 +41,7 @@ class SQLiteDatabase:
             return []
 
     def add_password(self, category_id, website, username, encrypted_password, notes):
-        #Добавить новый пароль в базу данных
+        # Добавить новый пароль в базу данных
         try:
             conn = self.get_connection()
             cursor = conn.cursor()
@@ -50,7 +50,8 @@ class SQLiteDatabase:
                 INSERT INTO passwords (category_id, website, username, encrypted_password, notes, created_date)
                 VALUES (?, ?, ?, ?, ?, ?)
             ''', (
-            category_id, website, username, encrypted_password, notes, datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
+                category_id, website, username, encrypted_password, notes,
+                datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
 
             conn.commit()
             conn.close()
@@ -63,7 +64,7 @@ class SQLiteDatabase:
             return False
 
     def get_all_passwords(self):
-        #Получить все пароли с информацией о категориях
+        # Получить все пароли с информацией о категориях
         try:
             conn = self.get_connection()
             cursor = conn.cursor()
@@ -97,7 +98,7 @@ class SQLiteDatabase:
             return []
 
     def search_passwords(self, search_term):
-        #Поиск паролей в базе данных
+        # Поиск паролей в базе данных
         try:
             conn = self.get_connection()
             cursor = conn.cursor()
@@ -132,7 +133,7 @@ class SQLiteDatabase:
             return []
 
     def delete_password(self, password_id):
-        #Удалить пароль из базы данных
+        # Удалить пароль из базы данных
         try:
             conn = self.get_connection()
             cursor = conn.cursor()
@@ -150,7 +151,7 @@ class SQLiteDatabase:
             return False
 
     def update_password(self, password_id, category_id, website, username, encrypted_password, notes):
-        #Обновить пароль в базе данных
+        # Обновить пароль в базе данных
         try:
             conn = self.get_connection()
             cursor = conn.cursor()

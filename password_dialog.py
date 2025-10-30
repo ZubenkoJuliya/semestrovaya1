@@ -20,23 +20,23 @@ class PasswordDialog(QDialog):
         self.setup_category_icons()  # Добавляем иконки для категорий
 
     def get_icon_for_category(self, icon_name):
-        #Получить картинку для категории по имени иконки
+        # Получить картинку для категории по имени иконки
         # Соответствие имен иконок из базы данных и файлов картинок
         icon_files = {
-            'social': 'social.png',
-            'email': 'email.png',
-            'bank': 'bank.png',
-            'work': 'work.png',
-            'games': 'games.png',
-            'education': 'education.png',
-            'health': 'health.png',
-            'shopping': 'shopping.png',
-            'travel': 'travel.png',
-            'food': 'food.png'
+            'social': 'social.ico',
+            'email': 'email.ico',
+            'bank': 'bank.ico',
+            'work': 'work.ico',
+            'games': 'games.ico',
+            'education': 'education.ico',
+            'health': 'health.ico',
+            'shopping': 'shopping.ico',
+            'travel': 'travel.ico',
+            'food': 'food.ico'
         }
 
         # Получаем имя файла для категории
-        filename = icon_files.get(icon_name, 'default.png')
+        filename = icon_files.get(icon_name, 'default.ico')
         icon_path = f'icons/{filename}'
 
         # Если файл существует - используем его
@@ -48,7 +48,7 @@ class PasswordDialog(QDialog):
             return QIcon()  # Пустая иконка
 
     def setup_category_icons(self):
-        #Добавление картинок для категорий в комбобокс
+        # Добавление картинок для категорий в комбобокс
         self.category_combo.clear()
 
         for category_id, name, icon in self.categories:
@@ -58,7 +58,7 @@ class PasswordDialog(QDialog):
         print(f"Загружено категорий в диалог: {self.category_combo.count()}")
 
     def setup_ui(self):
-        #Настройка интерфейса
+        # Настройка интерфейса
         # Настраиваем поле пароля
         font = QFont()
         font.setFamily("Courier New")
@@ -80,14 +80,14 @@ class PasswordDialog(QDialog):
         print("Интерфейс диалога пароля настроен")
 
     def toggle_password_visibility(self):
-        #Переключение видимости пароля
+        # Переключение видимости пароля
         if self.show_password_check.isChecked():
             self.password_input.setEchoMode(QLineEdit.EchoMode.Normal)
         else:
             self.password_input.setEchoMode(QLineEdit.EchoMode.Password)
 
     def fill_form_data(self):
-        #Заполнение формы данными для редактирования
+        # Заполнение формы данными для редактирования
         if not self.password_data:
             return
 
@@ -119,7 +119,7 @@ class PasswordDialog(QDialog):
         print(f"Форма заполнена данными для редактирования: {website}")
 
     def open_generator(self):
-        #Открытие генератора паролей
+        # Открытие генератора паролей
         try:
             from generator_dialog import GeneratorDialog
             dialog = GeneratorDialog(self)

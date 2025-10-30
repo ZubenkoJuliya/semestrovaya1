@@ -15,7 +15,7 @@ class GeneratorDialog(QDialog):
         self.generate_password()
 
     def setup_ui(self):
-        #Настройка интерфейса после загрузки из .ui файла
+        # Настройка интерфейса после загрузки из .ui файла
 
         # Настраиваем поле для пароля
         font = QFont()
@@ -37,12 +37,12 @@ class GeneratorDialog(QDialog):
         print("Интерфейс генератора настроен")
 
     def update_length_label(self, value):
-        #Обновление метки длины пароля
+        # Обновление метки длины пароля
         self.length_label.setText(f"Длина пароля: {value}")
         self.generate_password()
 
     def generate_password(self):
-        #Генерация нового пароля
+        # Генерация нового пароля
         length = self.length_slider.value()
         uppercase = self.uppercase_check.isChecked()
         lowercase = self.lowercase_check.isChecked()
@@ -79,7 +79,7 @@ class GeneratorDialog(QDialog):
         print(f"Пароль сгенерирован, надежность: {strength}%")
 
     def copy_to_clipboard(self):
-        #Копирование пароля в буфер обмена
+        # Копирование пароля в буфер обмена
         password = self.password_output.text()
         if password and password != "Выберите хотя бы один тип символов":
             pyperclip.copy(password)
@@ -97,12 +97,12 @@ class GeneratorDialog(QDialog):
             QMessageBox.warning(self, "Ошибка", "Сначала сгенерируйте пароль")
 
     def reset_copy_button(self, original_text):
-        #Восстановление исходного текста кнопки
+        # Восстановление исходного текста кнопки
         self.copy_btn.setText(original_text)
         self.copy_btn.setStyleSheet("")
 
     def get_generated_password(self):
-        #Получение сгенерированного пароля
+        # Получение сгенерированного пароля
         password = self.password_output.text()
         if password and password != "Выберите хотя бы один тип символов":
             return password
